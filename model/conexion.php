@@ -5,7 +5,7 @@ class Conexion
     private $host = "localhost";
     private $user = "root";
     private $pass = "";
-    private $db = "pokemonNoche";
+    private $db = "repuestaxisneiva";
     private $conPDO;
 
     public function __construct()

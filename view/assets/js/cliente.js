@@ -6,7 +6,8 @@ function validarCampos() {
   const nombre = txtNombre.value.trim();
   const apellido = txtApellido.value.trim();
   const correo = txtCorreo.value.trim();
-  const password = txtPassword.value.trim();
+  const direccion = txtDireccion.value.trim();
+  const telefono = txtTelefono.value.trim();
 
   if (!tipoDoc) {
     showToast('El tipo de documento es requerido.', 'error');
@@ -44,11 +45,19 @@ function validarCampos() {
     });
     return false;
   }
-  if (!password) {
+  if (!telefono) {
     Swal.fire({
       icon: 'error',
       title: 'Error',
-      text: 'La contraseña es requerida.'
+      text: 'El telefono es Requerido es requerida.'
+    });
+    return false;
+  }
+  if (!direccion) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'El telefono es Requerido es requerida.'
     });
     return false;
   }
@@ -62,17 +71,17 @@ function create() {
     return; // Si la validación falla, detén la ejecución de la función
   }
 
-  let data = `tipoDoc=${selTipoDoc.value}&identificacion=${txtIdentificacion.value}&nombre=${txtNombre.value}&apellido=${txtApellido.value}&correo=${txtCorreo.value}&password=${txtPassword.value}`;
+  let data = `tipoDoc=${selTipoDoc.value}&identificacion=${txtIdentificacion.value}&nombre=${txtNombre.value}&apellido=${txtApellido.value}&correo=${txtCorreo.value}&direccion=${txtDireccion.value}}&telefono=${txtTelefono.value}`;
 
   axios
-    .post("../controller/usuario.create.php", data)
+    .post("../controller/cliente.create.php", data)
     .then(function (response) {
       console.log(response);
       Swal.fire({
         toast: true,
         position: 'top-end',
         icon: 'success', // Cambia a 'error' para errores
-        title: 'Usuario creado correctamente.',
+        title: 'Cliente creado correctamente.',
         showConfirmButton: false,
         timer: 3000,
         customClass: {
@@ -89,7 +98,7 @@ function create() {
 
 function read() {
   axios
-    .get("../controller/usuario.read.php")
+    .get("../controller/cliente.read.php")
     .then(function (response) {
       console.log(response);
       let table = "";
@@ -117,7 +126,7 @@ function read() {
 function update() {
   let data = `id=${this.id}&tipoDoc=${selTipoDocMod.value}&identificacion=${txtIdentificacionMod.value}&nombre=${txtNombreMod.value}&apellido=${txtApellidoMod.value}&correo=${txtCorreoMod.value}&password=${txtContrasenaMod.value}`;
   axios
-    .post("../controller/usuario.update.php", data)
+    .post("../controller/cliente.update.php", data)
     .then(function (response) {
       console.log(response);
       Swal.fire({
@@ -141,7 +150,7 @@ function update() {
 function deletes() {
   let data = `id=${this.id}`;
   axios
-    .post("../controller/usuario.delete.php", data)
+    .post("../controller/cliente.delete.php", data)
     .then(function (response) {
       console.log(response);
       read();
@@ -169,7 +178,7 @@ function deletes() {
 
 function readUpdate(id) {
   axios
-    .get(`../controller/usuario.readupdate.php?id=${id}`)
+    .get(`../controller/cliente.readupdate.php?id=${id}`)
     .then(function (response) {
       console.log(response.data[0]);
       selTipoDocMod.value = response.data[0].tipoDoc;
@@ -188,7 +197,7 @@ function readUpdate(id) {
 
 function readDelete(id, nombre) {
   this.id = id;
-  mensaje.innerHTML = `Esta seguro de eliminar el usuario ${nombre} ?`;
+  mensaje.innerHTML = `Esta seguro de eliminar el cliente ${nombre} ?`;
   read();
 }
 

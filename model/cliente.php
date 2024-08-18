@@ -3,19 +3,17 @@ namespace modelo;
 
 include_once "conexion.php";
 
-class Usuario
+
+class Cliente
 {
-    private $idUsuario;
+    private $idCliente;
     private $tipoDoc;
     private $numeroIdentificacion;
     private $nombre;
     private $apellido;
     private $correo;
-    private $contrasena;
     private $direccion;
     private $telefono;
-    private $genero;
-    private $rol;
     private $estado = 'ACTIVO';
     private $conexion;
 
@@ -27,16 +25,18 @@ class Usuario
     public function create()
     {
         try {
-            $sql = $this->conexion->getConPDO()->prepare("INSERT INTO usuarios (tipoDoc,numeroIdentificacion,nombre,apellido,correo,contrasena,estado)VALUES(?,?,?,?,?,?,?)");
-            $sql->bindParam(1, $this->tipoDoc);
-            $sql->bindParam(2, $this->numeroIdentificacion);
-            $sql->bindParam(3, $this->nombre);
-            $sql->bindParam(4, $this->apellido);
+
+            $sql = $this->conexion->getConPDO()->prepare("INSERT INTO clientes (nombre,tipoDoc,numeroIdentificacion,direccion,correo,telefono,apellido,estado)VALUES(?,?,?,?,?,?,?,?)");
+            $sql->bindParam(1, $this->nombre);
+            $sql->bindParam(2, $this->tipoDoc);
+            $sql->bindParam(3, $this->numeroIdentificacion);
+            $sql->bindParam(4, $this->direccion);
             $sql->bindParam(5, $this->correo);
-            $sql->bindParam(6, $this->contrasena);
-            $sql->bindParam(7, $this->estado);
+            $sql->bindParam(6, $this->telefono);
+            $sql->bindParam(7, $this->apellido);
+            $sql->bindParam(8, $this->estado);
             $sql->execute();
-            return "Usuario Creado";
+            return "Cliente Creado";
         } catch (\PDOException   $e) {
             return "Error: " . $e->getMessage();
         }
@@ -45,7 +45,7 @@ class Usuario
     public function read()
     {
         try {
-            $sql = $this->conexion->getConPDO()->prepare("SELECT * FROM usuarios WHERE estado='ACTIVO'");
+            $sql = $this->conexion->getConPDO()->prepare("SELECT * FROM clientes WHERE estado='ACTIVO'");
             $sql->execute();
             $result = $sql->fetchAll(\PDO::FETCH_ASSOC);
             return $result;
@@ -57,14 +57,15 @@ class Usuario
     public function update()
     {
         try {
-            $sql = $this->conexion->getConPDO()->prepare("UPDATE usuarios SET tipoDoc=?,numeroIdentificacion=?,nombre=?,apellido=?,correo=?,contrasena=? WHERE idUsuario=?");
+            $sql = $this->conexion->getConPDO()->prepare("UPDATE clientes SET tipoDoc=?,numeroIdentificacion=?,nombre=?,apellido=?,correo=?,direccion=?, telefono=? WHERE idCliente=?");
             $sql->bindParam(1, $this->tipoDoc);
             $sql->bindParam(2, $this->numeroIdentificacion);
             $sql->bindParam(3, $this->nombre);
             $sql->bindParam(4, $this->apellido);
             $sql->bindParam(5, $this->correo);
-            $sql->bindParam(6, $this->contrasena);
-            $sql->bindParam(7, $this->idUsuario);
+            $sql->bindParam(6, $this->direccion);
+            $sql->bindParam(6, $this->telefono);
+            $sql->bindParam(7, $this->idCliente);
             $sql->execute();
             return "Usuario Modificado";
         } catch (\PDOException $e) {
@@ -75,8 +76,8 @@ class Usuario
     public function delete()
     {
         try {
-            $sql = $this->conexion->getConPDO()->prepare("UPDATE usuarios SET estado='INACTIVO' WHERE idUsuario=?");
-            $sql->bindParam(1, $this->idUsuario);
+            $sql = $this->conexion->getConPDO()->prepare("UPDATE clientes SET estado='INACTIVO' WHERE idCliente=?");
+            $sql->bindParam(1, $this->idCliente);
             $sql->execute();
             return "Usuario Eliminado";
         } catch (\PDOException $e) {
@@ -87,9 +88,9 @@ class Usuario
     public function login()
     {
         try {
-            $sql = $this->conexion->getConPDO()->prepare("SELECT * FROM usuarios WHERE estado='ACTIVO' AND correo=? AND contrasena=?");
+            $sql = $this->conexion->getConPDO()->prepare("SELECT * FROM clientes WHERE estado='ACTIVO' AND correo=? AND direccion=?");
             $sql->bindParam(1, $this->correo);
-            $sql->bindParam(2, $this->contrasena);
+            $sql->bindParam(2, $this->direccion);
             $sql->execute();
             $result = $sql->fetchAll(\PDO::FETCH_ASSOC);
             return $result;
@@ -101,8 +102,8 @@ class Usuario
     public function readUpdate()
     {
         try {
-            $sql = $this->conexion->getConPDO()->prepare("SELECT * FROM usuarios WHERE idUsuario=?");
-            $sql->bindParam(1, $this->idUsuario);
+            $sql = $this->conexion->getConPDO()->prepare("SELECT * FROM clientes WHERE idCliente=?");
+            $sql->bindParam(1, $this->idCliente);
             $sql->execute();
             $result = $sql->fetchAll(\PDO::FETCH_ASSOC);
             return $result;
@@ -113,19 +114,19 @@ class Usuario
 
 
     /**
-     * Get the value of idUsuario
+     * Get the value of idCliente
      */
     public function getId()
     {
-        return $this->idUsuario;
+        return $this->idCliente;
     }
 
     /**
-     * Set the value of idUsuario
+     * Set the value of idCliente
      */
-    public function setId($idUsuario): self
+    public function setId($idCliente): self
     {
-        $this->idUsuario = $idUsuario;
+        $this->idCliente = $idCliente;
 
         return $this;
     }
@@ -221,19 +222,19 @@ class Usuario
     }
 
     /**
-     * Get the value of contrasena
+     * Get the value of direccion
      */
-    public function getContrasena()
+    public function getDireccion()
     {
-        return $this->contrasena;
+        return $this->direccion;
     }
 
     /**
-     * Set the value of contrasena
+     * Set the value of direccion
      */
-    public function setContrasena($contrasena): self
+    public function setDireccion($direccion): self
     {
-        $this->contrasena = $contrasena;
+        $this->direccion = $direccion;
 
         return $this;
     }
@@ -253,24 +254,6 @@ class Usuario
     public function setTelefono($telefono): self
     {
         $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of telefono
-     */
-    public function getEstado()
-    {
-        return $this->estado;
-    }
-
-    /**
-     * Set the value of telefono
-     */
-    public function setEstado($estado): self
-    {
-        $this->estado = $estado;
 
         return $this;
     }

@@ -1,7 +1,7 @@
 <?php include_once "header.php" ?>
 
 <div class="row my-5">
-    <h1 class="text-center">Formulario Usuarios</h1>
+    <h1 class="text-center">Formulario Clientes</h1>
 </div>
 <div class="row">
     <div class="col-2">
@@ -50,6 +50,26 @@
 </div>
 <div class="row mt-3">
     <div class="col-2">
+        <span class="fw-bolder">Teléfono:</span>
+    </div>
+    <div class="col-4">
+        <div class="form-floating">
+            <input type="email" name="txtTelefono" id="txtTelefono" class="form-control" placeholder=".">
+            <label for="floatingInput">Teléfono:</label>
+        </div>
+    </div>
+    <div class="col-2">
+        <span class="fw-bolder">Dirección:</span>
+    </div>
+    <div class="col-4">
+        <div class="form-floating">
+            <input type="text" name="txtDireccion" id="txtDireccion" class="form-control" placeholder=".">
+            <label for="floatingInput">Dirección:</label>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-2">
         <span class="fw-bolder">Correo:</span>
     </div>
     <div class="col-4">
@@ -58,62 +78,8 @@
             <label for="floatingInput">Correo:</label>
         </div>
     </div>
-    <div class="col-2">
-        <span class="fw-bolder">Contraseña:</span>
-    </div>
-    <div class="col-4">
-        <div class="form-floating">
-            <input type="password" name="txtPassword" id="txtPassword" class="form-control" placeholder=".">
-            <label for="floatingInput">Contraseña:</label>
-        </div>
-    </div>
+   
 </div>
-<!-- <div class="row mt-3">
-    <div class="col-2">
-        <span class="fw-bolder">Direccion:</span>
-    </div>
-    <div class="col-4">
-        <div class="form-floating">
-            <input type="txt" name="txtDireccion" id="txtDireccion" class="form-control" placeholder=".">
-            <label for="floatingInput">Direccion:</label>
-        </div>
-    </div>
-    <div class="col-2">
-        <span class="fw-bolder">Telefono:</span>
-    </div>
-    <div class="col-4">
-        <div class="form-floating">
-            <input type="tel" name="txtTelefono" id="txtTelefono" class="form-control" placeholder=".">
-            <label for="floatingInput">telefono:</label>
-        </div>
-    </div>
-</div> -->
-<!-- <div class="row mt-3">
-    <div class="col-2">
-        <span class="fw-bolder">Genero:</span>
-    </div>
-    <div class="col-4">
-        <div class="form-floating">
-            <select name="selGenero" id="selGenero" class="form-control">
-                <option value="0" selected disabled>Seleccionar</option>
-                <option value="M">Hombre</option>
-                <option value="F">Mujer</option>
-            </select>
-            <label for="floatingInput">Genero:</label>
-        </div>
-    </div>
-    <div class="col-2">
-        <span class="fw-bolder">Rol:</span>
-    </div>
-    <div class="col-4">
-        <div class="form-floating">
-            <select name="selRol" id="selRol" class="form-control">
-                <option value="0" selected disabled>Seleccionar</option>
-            </select>
-            <label for="floatingInput">Rol:</label>
-        </div>
-    </div>
-</div> -->
 <div class="row my-3 justify-content-center">
     <div class="col-4 d-grid gap-2">
         <a onclick="create()" class="btn btn-primary btn-taxi">Crear</a>
@@ -122,9 +88,9 @@
 
 
 <div class="row mt-5 d-flex justify-content-center">
-    <h1 class="bg-dark py-1 text-center text-white">Tabla de Usuarios</h1>
+    <h1 class="bg-dark py-1 text-center text-white">Tabla de Clientes</h1>
     <div class="col-10">
-        <table class="table" id="tableUsuario">
+        <table class="table" id="tableClientes">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -135,7 +101,7 @@
                     <th scope="col">Opciones</th>
                 </tr>
             </thead>
-            <tbody id="tableBodyUsuario">
+            <tbody id="tableBodyClientes">
                 <!-- <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
@@ -214,12 +180,12 @@
                             </div>
                         </div>
                         <div class="col-2">
-                            <span class="fw-bolder">Contraseña:</span>
+                            <span class="fw-bolder">Dirección:</span>
                         </div>
                         <div class="col-4">
                             <div class="form-floating">
-                                <input type="email" name="txtContrasenaMod" id="txtContrasenaMod" class="form-control" placeholder=".">
-                                <label for="floatingInput">Contraseña:</label>
+                                <input type="email" name="txtDireccionMod" id="txtDireccionMod" class="form-control" placeholder=".">
+                                <label for="floatingInput">Dirección:</label>
                             </div>
                         </div>
                     </div>
@@ -271,5 +237,5 @@
     </div>
 </div>
 </div>
-<script src="./assets//js/usuario.js"></script>
+<script src="./assets//js/cliente.js"></script>
 <?php include_once "footer.php" ?>

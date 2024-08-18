@@ -16,7 +16,7 @@
         <input class="form-control" type="email" name="txtCorreo" id="txtCorreo">
     </div>
     <div class="row mt-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">Contraseña</label>
         <input class="form-control" type="password" name="txtPassword" id="txtPassword">
     </div>
     <div class="row mt-3">

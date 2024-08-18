@@ -6,23 +6,14 @@ $nombre = $_POST["nombre"];
 $apellido = $_POST["apellido"];
 $correo = $_POST["correo"];
 $password = $_POST["password"];
-$direccion = $_POST["direccion"];
-$telefono = $_POST["telefono"];
-$genero = $_POST["genero"];
-$rol = $_POST["rol"];
 
 $ususarioM = new \modelo\usuario;
 $ususarioM->setTipoDoc($tipoDoc);
-$ususarioM->setIdentificacion($identificacion);
+$ususarioM->setnumeroIdentificacion($identificacion);
 $ususarioM->setNombre($nombre);
 $ususarioM->setApellido($apellido);
 $ususarioM->setCorreo($correo);
-$ususarioM->setPassword($password);
-$ususarioM->setDireccion($direccion);
-$ususarioM->setTelefono($telefono);
-$ususarioM->setGenero($genero);
-$ususarioM->setRol($rol);
-
+$ususarioM->setContrasena($password);
 $response = $ususarioM->create();
 echo json_encode($response);
 unset($ususarioM);

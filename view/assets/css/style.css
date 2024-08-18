@@ -17,3 +17,34 @@
 .copy{
     background-color: #e6b33d !important;
 }
+
+
+.btn-taxi {
+    background-color: black; /* Fondo negro */
+    color: #FFD700; /* Letras amarillas */
+    border-color: black; /* Borde negro */
+    border-radius: 15px; /* Bordes redondeados */
+}
+
+.btn-taxi:hover {
+    background-color: #333333; /* Un tono ligeramente más claro en hover */
+    color: #FFD700; /* Mantén las letras amarillas */
+    border-color: #333333; /* Borde ligeramente más claro */
+}
+
+
+
+Asegúrate de que el CSS esté correctamente enlazado en tu proyecto
+.swal2-toast.custom-toast-success {
+    background-color: #24db6a !important;
+    color: #ffffff !important; /* Cambia el color a blanco */
+  }
+  
+  .swal2-toast.custom-toast-error {
+    background-color: #bd1010 !important;
+    color: #ffffff !important; /* Cambia el color a blanco */
+  }
+  
+
+
+

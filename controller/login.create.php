@@ -6,7 +6,7 @@ $pass = $_GET["password"];
 
 $usuarioM = new \modelo\Usuario;
 $usuarioM->setCorreo($correo);
-$usuarioM->setPassword($pass);
+$usuarioM->setContrasena($pass);
 $response = $usuarioM->login();
 
 if (isset($response) and !empty($response)) {

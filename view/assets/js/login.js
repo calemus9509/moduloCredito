@@ -7,7 +7,7 @@ function login() {
       console.log(response);
       try {
         if (response.data[0].correo == txtCorreo.value) {
-          window.location.href = "roles.frm.php";
+          window.location.href = "usuarios.frm.php";
         }
       } catch (error) {
         alert("Error al iniciar sesion");
