@@ -2,7 +2,6 @@
 
 include_once "../model/usuario.php";
 
-
 $id = $_POST["id"];
 $tipoDoc = $_POST["tipoDoc"];
 $identificacion = $_POST["identificacion"];

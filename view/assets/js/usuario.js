@@ -144,6 +144,17 @@ function deletes() {
     .post("../controller/usuario.delete.php", data)
     .then(function (response) {
       console.log(response);
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success', // Cambia a 'error' para errores
+        title: 'Usuario ha sido eliminado correctamente.',
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: {
+          toast: 'custom-toast' // Usa 'custom-toast-error' para errores
+        }
+      });
       read();
     })
     .catch(function (error) {

@@ -71,7 +71,7 @@ function create() {
     return; // Si la validación falla, detén la ejecución de la función
   }
 
-  let data = `tipoDoc=${selTipoDoc.value}&identificacion=${txtIdentificacion.value}&nombre=${txtNombre.value}&apellido=${txtApellido.value}&correo=${txtCorreo.value}&direccion=${txtDireccion.value}}&telefono=${txtTelefono.value}`;
+  let data = `tipoDoc=${selTipoDoc.value}&identificacion=${txtIdentificacion.value}&nombre=${txtNombre.value}&apellido=${txtApellido.value}&correo=${txtCorreo.value}&direccion=${txtDireccion.value}&telefono=${txtTelefono.value}`;
 
   axios
     .post("../controller/cliente.create.php", data)
@@ -110,12 +110,57 @@ function read() {
         table += `<td>${element.nombre} ${element.apellido}</td>`;
         table += `<td>${element.correo}</td>`;
         table += `<td>
-                    <a onclick="readUpdate(${element.idUsuario})" class='btn btn-warning'data-bs-toggle="modal"data-bs-target="#updateModal">Modificar</a> 
-                    <a onclick="readDelete(${element.idUsuario},'${element.nombre}')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</a>
+                    <a onclick="readUpdate(${element.idCliente})" class='btn btn-taxis'data-bs-toggle="modal"data-bs-target="#updateModal">Modificar</a> 
+                    <a onclick="readDelete(${element.idCliente},'${element.nombre}')" class="btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</a>
+                   <a href="../view/facturas.frm.php?idCliente=${element.idCliente}" class="btn btn-facturas">Facturas</a>
                   </td>`;
         table += `</tr>`;
       });
-      tableBodyUsuario.innerHTML = table;
+      tableBodyClientes.innerHTML = table;
+      new DataTable("#tableClientes", {
+        retrieve: true,
+        language: {
+          url: "./assets/json/es.json",
+        },
+        dom: "Bfrtip",
+        buttons: [
+          {
+            extend: "colvis",
+            text: "<i class='fa-solid fa-filter fa-beat'></i>",
+            titleAttr: "Filtrar",
+            className: "filtro",
+          },
+          {
+            extend: "excel",
+            text: "<i class='fa-solid fa-file-excel fa-bounce'></i>",
+            titleAttr: "Excel",
+            className: "excel",
+            exportOptions: { columns: [0, 1, 2, 3, 4] },
+          },
+          {
+            extend: "print",
+            text: "<i class='fa-solid fa-print fa-bounce'></i>",
+            titleAttr: "Imprimir",
+            className: "imprimir",
+            exportOptions: { columns: [0, 1, 2, 3, 4] },
+          },
+          {
+            download: "open",
+            extend: "pdf",
+            text: "<i class='fa-solid fa-file-pdf fa-bounce'></i>",
+            titleAttr: "PDF",
+            className: "pdf",
+            exportOptions: { columns: [0, 1, 2, 3, 4] },
+          },
+          {
+            extend: "copy",
+            text: "<i class='fa-solid fa-copy fa-bounce'></i>",
+            titleAttr: "Copiar",
+            className: "copy",
+            exportOptions: { columns: [0, 1, 2, 3, 4] },
+          },
+        ],
+      });
       
     })
     .catch(function (error) {
@@ -124,7 +169,7 @@ function read() {
 }
 
 function update() {
-  let data = `id=${this.id}&tipoDoc=${selTipoDocMod.value}&identificacion=${txtIdentificacionMod.value}&nombre=${txtNombreMod.value}&apellido=${txtApellidoMod.value}&correo=${txtCorreoMod.value}&password=${txtContrasenaMod.value}`;
+  let data = `id=${this.id}&tipoDoc=${selTipoDocMod.value}&identificacion=${txtIdentificacionMod.value}&nombre=${txtNombreMod.value}&apellido=${txtApellidoMod.value}&correo=${txtCorreoMod.value}&direccion=${txtDireccionMod.value}&telefono=${txtTelefonoMod.value}`;
   axios
     .post("../controller/cliente.update.php", data)
     .then(function (response) {
@@ -186,9 +231,10 @@ function readUpdate(id) {
       txtNombreMod.value = response.data[0].nombre;
       txtApellidoMod.value = response.data[0].apellido;
       txtCorreoMod.value = response.data[0].correo;
-      txtContrasenaMod.value = response.data[0].contrasena;
+      txtDireccionMod.value = response.data[0].direccion;
+      txtTelefonoMod.value = response.data[0].telefono;
 
-      this.id = response.data[0].idUsuario;
+      this.id = response.data[0].idCliente;
     })
     .catch(function (error) {
       console.log(error);

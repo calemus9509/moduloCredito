@@ -26,6 +26,27 @@
     border-radius: 15px; /* Bordes redondeados */
 }
 
+.btn-taxis {
+    background-color: #F6a700; /* Fondo negro */
+    color: rgb(252, 245, 245); /* Letras blancas */
+    border-color:  #F6a700; /* Borde negro */
+    border-radius: 15px; /* Bordes redondeados */
+}
+
+.btn-eliminar {
+    background-color: #df1414; /* Fondo  */
+    color: rgb(252, 245, 245); /* Letras  */
+    border-color:  #df1414; /* Borde  */
+    border-radius: 15px; /* Bordes redondeados */
+}
+
+.btn-facturas{
+    background-color: #64625e98; /* Fondo  */
+    color: rgb(252, 245, 245); /* Letras  */
+    border-color:  #64625e98; /* Borde  */
+    border-radius: 15px; /* Bordes redondeados */
+}
+
 .btn-taxi:hover {
     background-color: #333333; /* Un tono ligeramente más claro en hover */
     color: #FFD700; /* Mantén las letras amarillas */

@@ -184,8 +184,19 @@
                         </div>
                         <div class="col-4">
                             <div class="form-floating">
-                                <input type="email" name="txtDireccionMod" id="txtDireccionMod" class="form-control" placeholder=".">
+                                <input type="text" name="txtDireccionMod" id="txtDireccionMod" class="form-control" placeholder=".">
                                 <label for="floatingInput">Dirección:</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                    <div class="col-2">
+                            <span class="fw-bolder">Teléfono:</span>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <input type="text" name="txtTelefonoMod" id="txtTelefonoMod" class="form-control" placeholder=".">
+                                <label for="floatingInput">Teléfono:</label>
                             </div>
                         </div>
                     </div>

@@ -64,8 +64,8 @@ class Cliente
             $sql->bindParam(4, $this->apellido);
             $sql->bindParam(5, $this->correo);
             $sql->bindParam(6, $this->direccion);
-            $sql->bindParam(6, $this->telefono);
-            $sql->bindParam(7, $this->idCliente);
+            $sql->bindParam(7, $this->telefono);
+            $sql->bindParam(8, $this->idCliente);
             $sql->execute();
             return "Usuario Modificado";
         } catch (\PDOException $e) {

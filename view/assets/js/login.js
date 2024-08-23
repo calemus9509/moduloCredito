@@ -7,10 +7,20 @@ function login() {
       console.log(response);
       try {
         if (response.data[0].correo == txtCorreo.value) {
-          window.location.href = "usuarios.frm.php";
+          window.location.href = "clientes.frm.php";
         }
       } catch (error) {
-        alert("Error al iniciar sesion");
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'error', // Cambia a 'error' para errores
+          title: 'Usuario y/o contraseña incorrectos',
+          showConfirmButton: false,
+          timer: 3000,
+          customClass: {
+            toast: 'custom-toast-error' // Usa 'custom-toast-error' para errores
+          }
+        });
       }
     })
     .catch(function (error) {
